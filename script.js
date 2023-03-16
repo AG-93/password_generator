@@ -91,22 +91,22 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   //variable to store length of password from user input
-  let length = parseInt(
+  let userChoiceOflength = parseInt(
     prompt('How many characters would you like your password to contain?')
   )
-
-  if(isNaN (length) === true){
+//function for getting a random element from an array
+  if(isNaN (userChoiceOflength) === true){
     alert('Password length must be provided as number');
     return;
   }
   
-  if(length > 10) {
-    alert('Password length must be 10 characters');
+  if(userChoiceOflength < 10) {
+    alert('Password length must be 10 or more characters');
     return;
   }
 
-  if(length < 64) {
-    alert('Password length much be less than 64 characters');
+  if(userChoiceOflength > 64) {
+    alert('Password length must be less than 64 characters');
     return;
   }
 
@@ -128,14 +128,15 @@ function getPasswordOptions() {
 
   if(hasLowerCasedCharacters === false && 
     hasUpperCasedCharacters === false &&
-    hasNumericCharacters === false && 
-    hasSpecialCharacters === false &&) {
-      alert('Must select at least one character type') ;
+    hasSpecialCharacters === false && 
+    hasNumericCharacters === false) {
+      alert('Must select at least one character type');
       return;
   }
 
+  //Javascript has keyvaluepair 
   let passwordOptions = {
-    length: length;
+    length: userChoiceOflength,
     hasSpecialCharacters: hasSpecialCharacters,
     hasUpperCasedCharacters: hasUpperCasedCharacters,
     hasLowerCasedCharacters: hasLowerCasedCharacters,
@@ -158,8 +159,12 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   let options = getPasswordOptions();
+  //!= logical operator that explains value isn't there
+  if (!options){
+    return
+  }
   console.log(options);
-  let resutls = []
+  let results = []
 
   let possibleCharacters = []
 
@@ -189,19 +194,19 @@ function generatePassword() {
   for(let index = 0; index < options.length; index++){
     var generated = getRandom(possibleCharacters);
     console.log(generated);
-    resutls.push(generated);
+    results.push(generated);
   }
 
 
 //making algorithm more random
   for(let index=0; index<guaranteedCharacters.length; index++){
-    result(index) = guaranteedCharacters(index)
+    results[index] = guaranteedCharacters[index]
   }
 
-  console.log(result);
+  console.log(results);
 
   //generates all values
-  return result.join("")
+  return results.join("")
  
  
  // console.log (guaranteedCharacters);
