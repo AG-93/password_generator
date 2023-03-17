@@ -150,8 +150,8 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  letrandomIndex = Math.floor(Math.random() * arr.length)
-  letrandomElement = arr(randomIndex);
+  let randomIndex = Math.floor(Math.random() * arr.length)
+  let randomElement = arr[randomIndex];
 
   return randomElement;
 }
